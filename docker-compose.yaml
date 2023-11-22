@@ -33,6 +33,22 @@ services:
     depends_on:
       - mongo
     restart: always
+  kernel:
+    build: ./kernel
+    container_name: kernel
+    ports:
+      - "8080:8080"
+    environment:
+      ML_PROCESSOR_URL: http://ml-processor:8000/data
+      MONGODB_URL: ${ME_CONFIG_MONGODB_URL}
+      MQTT_HOST: mosquitto
+    restart: always
+  ml-processor:
+    build: ./ml-processor
+    container_name: ml-processor
+    ports:
+      - "8000:8000"
+    restart: always
 
 volumes:
   mongo_data_configdb:
