@@ -1,6 +1,7 @@
 import pandas as pd
 import joblib
 import numpy as np
+import time
 from Data import Data
 from Model import Model
 from DataScaler import DataScaler
@@ -44,6 +45,9 @@ app = FastAPI(lifespan=lifespan)
 
 @app.post("/data")
 async def predict(data: Data):
+    global model_instance, scaler
+    while (scaler == None or model_instance == None):
+        time.sleep(1)
     # Convert input data to a dictionary for prediction
     df = pd.DataFrame(data.model_dump(), index=[0])
     
