@@ -6,13 +6,11 @@ import ColumnChart from './ColumnChart';
 
 const User = () => {
   const [userData, setUserData] = useState({});
-  const [loading, setLoading] = useState(true);
-  const [error, setError] = useState(null);
 
   // Function to fetch data from the API
   const fetchData = async () => {
     try {
-      const response = await axios.get(`http://127.0.0.1:8082/data`);
+      const response = await axios.get(`http://processor:8082/data`);
       setUserData(response.data);
     } catch (error) {
       console.error('Error fetching data:', error);

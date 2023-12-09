@@ -7,7 +7,7 @@ WORKDIR /app
 # Copy package.json and package-lock.json to the working directory
 COPY public/ /app/public
 COPY src/ /app/src
-COPY package.json /app/
+COPY package.json /app/package.json
 COPY package-lock.json /app/package-lock.json
 
 # Install the project dependencies
