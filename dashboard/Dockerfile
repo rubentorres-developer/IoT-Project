@@ -5,7 +5,9 @@ FROM node:20.9.0
 WORKDIR /app
 
 # Copy package.json and package-lock.json to the working directory
-COPY package*.json ./
+COPY public/ /app/public
+COPY src/ /app/src
+COPY package.json /app/
 
 # Install the project dependencies
 RUN npm install
