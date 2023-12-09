@@ -2,7 +2,7 @@ version: "3"
 
 services:
   mosquitto:
-    image: eclipse-mosquitto:latest
+    image: eclipse-mosquitto:2.0.18
     container_name: mosquitto
     ports:
       - "1883:1883"
@@ -33,6 +33,12 @@ services:
     depends_on:
       - mongo
     restart: always
+  ml-processor:
+    build: ./ml-processor
+    container_name: ml-processor
+    ports:
+      - "8000:8000"
+    restart: always
   kernel:
     build: ./kernel
     container_name: kernel
@@ -42,12 +48,10 @@ services:
       ML_PROCESSOR_URL: http://ml-processor:8000/data
       MONGODB_URL: ${ME_CONFIG_MONGODB_URL}
       MQTT_HOST: mosquitto
-    restart: always
-  ml-processor:
-    build: ./ml-processor
-    container_name: ml-processor
-    ports:
-      - "8000:8000"
+    depends_on:
+      - mosquitto
+      - mongo
+      - ml-processor
     restart: always
   processor:
     build: ./processor
@@ -57,6 +61,18 @@ services:
     environment:
       MONGODB_URL: ${ME_CONFIG_MONGODB_URL}
       DASHBOARD_URL: http://dashboard:3000
+    depends_on:
+      - mongo
+    restart: always
+  dashboard:
+    build: ./dashboard
+    container_name: dashboard
+    ports:
+      - "3000:3000"
+    environment:
+      PROCESSOR_URL: http://processor:8082
+    depends_on:
+      - processor
     restart: always
 
 volumes:
