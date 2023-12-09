@@ -1,9 +1,11 @@
-FROM python:latest
+FROM python:3.11.7
 
 WORKDIR /kernel
 
-COPY . .
+COPY ./requirements.txt .
 
-RUN pip install -r requirements.txt
+RUN pip install --no-cache-dir --upgrade -r requirements.txt
 
-CMD [ "python", "kernel.py" ]
+COPY ./kernel.py .
+
+CMD ["python", "kernel.py"]
