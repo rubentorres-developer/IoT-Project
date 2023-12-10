@@ -12,7 +12,7 @@ const User = () => {
   // Function to fetch data from the API
   const fetchData = async () => {
     try {
-      const response = await axios.get(`http://processor:8082/data`);
+      const response = await axios.get('/api/data');
       setUserData(response.data);
       setLoading(false);
     } catch (error) {
@@ -90,14 +90,14 @@ const User = () => {
             <tr>
               <td>Run</td>
               <td>{userData.today.durations.run} seconds</td>
-              <td>{userData.today.distances.run} m</td>
-              <td>{userData.today.calories.run} kcal</td>
+              <td>{userData.today.distances.run.toFixed(2)} m</td>
+              <td>{userData.today.calories.run.toFixed(2)} kcal</td>
             </tr>
             <tr>
               <td>Walk</td>
               <td>{userData.today.durations.walk} seconds</td>
-              <td>{userData.today.distances.walk} m</td>
-              <td>{userData.today.calories.walk} kcal</td>
+              <td>{userData.today.distances.walk.toFixed(2)} m</td>
+              <td>{userData.today.calories.walk.toFixed(2)} kcal</td>
             </tr>
           </tbody>
         </table>
@@ -116,14 +116,14 @@ const User = () => {
             <tr>
               <td>Run</td>
               <td>{totalWeekDurationsRun} seconds</td>
-              <td>{totalWeekDistancesRun} m</td>
-              <td>{totalWeekCaloriesRun} kcal</td>
+              <td>{totalWeekDistancesRun.toFixed(2)} m</td>
+              <td>{totalWeekCaloriesRun.toFixed(2)} kcal</td>
             </tr>
             <tr>
               <td>Walk</td>
               <td>{totalWeekDurationsWalk} seconds</td>
-              <td>{totalWeekDistancesWalk} m</td>
-              <td>{totalWeekCaloriesWalk} kcal</td>
+              <td>{totalWeekDistancesWalk.toFixed(2)} m</td>
+              <td>{totalWeekCaloriesWalk.toFixed(2)} kcal</td>
             </tr>
           </tbody>
         </table>
@@ -142,14 +142,14 @@ const User = () => {
             <tr>
               <td>Run</td>
               <td>{userData.month.durations.run} seconds</td>
-              <td>{userData.month.distances.run} m</td>
-              <td>{userData.month.calories.run} kcal</td>
+              <td>{userData.month.distances.run.toFixed(2)} m</td>
+              <td>{userData.month.calories.run.toFixed(2)} kcal</td>
             </tr>
             <tr>
               <td>Walk</td>
               <td>{userData.month.durations.walk} seconds</td>
-              <td>{userData.month.distances.walk} m</td>
-              <td>{userData.month.calories.walk} kcal</td>
+              <td>{userData.month.distances.walk.toFixed(2)} m</td>
+              <td>{userData.month.calories.walk.toFixed(2)} kcal</td>
             </tr>
           </tbody>
         </table>
