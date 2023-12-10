@@ -88,15 +88,15 @@ Follow these steps to set up and run the project on your local machine:
         ```
 
 4. **Run with Docker in the Root Directory:**
-       - If you prefer using Docker, you can use the provided `docker-compose.yaml` file.
-         - Ensure you are in the root directory:
-            ```bash
-            cd ..
-            ```
-         - Run the following command:
-            ```bash
-            docker compose up --force-recreate
-            ```
+    - If you prefer using Docker, you can use the provided `docker-compose.yaml` file.
+    - Ensure you are in the root directory:
+        ```bash
+        cd ..
+        ```
+    - Run the following command:
+        ```bash
+        docker compose up --force-recreate
+        ```
 
    - Note: Wait for the Docker setup to finish before proceeding to the next step.
 
